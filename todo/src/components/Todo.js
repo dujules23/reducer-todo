@@ -1,5 +1,6 @@
 import todoReducer from '../reducers/todoReducer'
-import { useReducer } from 'react'
+import { useState, useReducer } from 'react'
+
 
 
 function Todo () {
@@ -15,16 +16,22 @@ function Todo () {
 
     //Component level state if needed 
 
+    const [todoText, setTodoText] = useState('');
 
     return(
-        
-        <form>
-             <input 
-
-                    />
-            
-        </form>
-        
+        <div>
+            <h1>Todo List</h1>
+            <form>
+                <input 
+                    className="todo-input"
+                    type="text"
+                    name="todoText"
+                    value={todoText}
+                    onChange={handleChanges}/>
+                <button>Add Todo Item</button>
+                <button>Clear Completed</button>
+            </form>
+        </div>
     )
 }
 
