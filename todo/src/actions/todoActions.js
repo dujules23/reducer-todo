@@ -1,6 +1,6 @@
 export const ADD_TODO = "ADD_TODO"
 export const TOGGLE_TODO = " TOGGLE_TODO"
-
+// export const COMPLETED_TODO = "COMPLETED_TODO"
 
 export default {
 
@@ -9,10 +9,11 @@ export default {
         return {type: TOGGLE_TODO}
     },
 
-    addTodo: (item) =>{
+    addTodo: (todo) => {
+        
+        return {type: ADD_TODO, payload: todo}
+    },
 
-        return {type: ADD_TODO, payload: item}
-    }
-
+    
     
 }
