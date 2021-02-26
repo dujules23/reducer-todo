@@ -1,18 +1,13 @@
 
 import { useState, useReducer } from 'react'
-import todoReducer from '../reducers/todoReducer'
+import todoReducer, { initialState } from '../reducers/todoReducer'
 import actions from '../actions/todoActions'
-import  { ADD_TODO } from '../actions/todoActions'
+
 
 
 function Todo () {
 
-    const initialState = [{
-        item: '',
-        completed: false,
-        id: Date.now()
-      
-    }]
+    
 
     const [state, dispatch] = useReducer(todoReducer, initialState)
 
@@ -25,12 +20,12 @@ function Todo () {
         console.log(todoText)
     }
 
-    const onSubmit = (e) =>{
-        e.preventDefault();
-        if (todoText !==''){
-        dispatch({ type: ADD_TODO, payload: todoText })
-        }
-    }
+    // const onSubmit = (e) => {
+    //     e.preventDefault();
+    //     if (todoText !==''){
+    //     dispatch({ type: ADD_TODO, payload: todoText })
+    //     }
+    // }
 
     // const handleClear = e => {
     //     dispatch({type: })
@@ -43,18 +38,25 @@ function Todo () {
             
             {state.map((todo) => {
                 return(
-                <p key={todo.id}>{todo.item}</p>
+                <p onClick={() => actions.toggleTodo('')}key={todo.id}>{todo.item}</p>
                 )
             })}
             
-            <form onSubmit={onSubmit} >
+            <form>
                 <input 
                     className="todo-input"
                     type="text"
                     name="todoText"
                     value={todoText}
                     onChange={handleChanges}/>
-                <button type="submit">Add Todo Item</button>
+                <button onClick={(e) => {
+                    e.preventDefault();
+                    dispatch(actions.addTodo(todoText))
+                    setTodoText('');
+                }} 
+                    type="submit">
+                    Add Todo Item
+                </button>
             </form>
         </div>
     )

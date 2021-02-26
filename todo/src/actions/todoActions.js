@@ -3,17 +3,13 @@ export const TOGGLE_TODO = " TOGGLE_TODO"
 // export const COMPLETED_TODO = "COMPLETED_TODO"
 
 export default {
+    toggleTodo: (id) => {
 
-    toggleTodo: () => {
-
-        return {type: TOGGLE_TODO}
+     return {type: TOGGLE_TODO, payload: id}
     },
 
     addTodo: (todo) => {
         
         return {type: ADD_TODO, payload: todo}
-    },
-
-    
-    
+    }
 }
